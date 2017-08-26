@@ -20,7 +20,6 @@ class CreateUsersTable extends Migration
             $table->string('national_number' , 10)->unique();
             $table->text('image')->nullable();
             $table->string('type')->default('admin');
-            $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
