@@ -1,5 +1,25 @@
 @extends('Admin.master')
+@section('custom-styles')
+    <style>
+        .navbar-right .dropdown-menu {
+            right: 0;
+            left: auto;
+        }
 
+        .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
+            background: #080808;
+        }
+
+        .navbar-nav>li>.dropdown-menu li a{
+            color: #fff;
+        }
+
+        .navbar-nav>li>.dropdown-menu{
+            border:none;
+            background: #080808;
+        }
+    </style>
+@endsection
 @section('content')
     <h1 class="page-header">صفحه اصلی</h1>
 

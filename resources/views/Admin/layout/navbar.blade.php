@@ -9,6 +9,33 @@
             </button>
             <a class="navbar-brand" href="#">نام پروژه</a>
         </div>
+        <ul class="nav navbar-nav navbar-right">
+            <!-- Authentication Links -->
+            @if (Auth::guest())
+                <li><a href="{{ route('login') }}">ورود</a></li>
+                <li><a href="{{ route('register') }}">ثبت نام</a></li>
+            @else
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        {{ Auth::user()->first_name . Auth::user()->last_name }} <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                <span>خروج</span>
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="GET" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+        </ul>
         {{--<div id="navbar" class="navbar-collapse collapse">--}}
             {{--<ul class="nav navbar-nav navbar-right">--}}
                 {{--<li><a href="#">صفحه اصلی</a></li>--}}

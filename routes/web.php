@@ -16,7 +16,7 @@ Route::group( [ 'namespace' => 'Auth' ] , function () {
     // Authentication Routes...
     $this->get('login', 'LoginController@showLoginForm')->name('login');
     $this->post('login', 'LoginController@login');
-    $this->post('logout', 'LoginController@logout')->name('logout');
+    $this->get('logout', 'LoginController@logout')->name('logout');
 
 // Registration Routes...
     $this->get('register', 'RegisterController@showRegistrationForm')->name('register');
@@ -33,7 +33,7 @@ Route::get('/', function () {
     return redirect(route('adminPanel'));
 });
 
-Route::group( [ 'prefix' => 'admin' , 'namespace' => 'Admin' ] , function () {
+Route::group( [ 'prefix' => 'admin' , 'namespace' => 'Admin' , 'middleware' => 'auth' ] , function () {
     $this->get('/panel' , 'PanelController@index')->name('adminPanel');
 });
 
