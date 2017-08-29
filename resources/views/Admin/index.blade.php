@@ -24,26 +24,13 @@
     <h1 class="page-header">صفحه اصلی</h1>
 
     <div class="row placeholders">
-        <div class="col-xs-6 col-sm-3 placeholder">
-            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-            <h4>سمت</h4>
-            <span class="text-muted">نام و نام خانوادگی</span>
-        </div>
-        <div class="col-xs-6 col-sm-3 placeholder">
-            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-            <h4>سمت</h4>
-            <span class="text-muted">نام و نام خانوادگی</span>
-        </div>
-        <div class="col-xs-6 col-sm-3 placeholder">
-            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-            <h4>سمت</h4>
-            <span class="text-muted">نام و نام خانوادگی</span>
-        </div>
-        <div class="col-xs-6 col-sm-3 placeholder">
-            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-            <h4>سمت</h4>
-            <span class="text-muted">نام و نام خانوادگی</span>
-        </div>
+        @foreach($users as $user)
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <img src="{{ $user->image != null ? "/" .$user->image['thumb'] : "data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" }}" width="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                <h4>{{ $user->type == "super-admin" ? "مدیر کل" : "مدیر معمولی" }}</h4>
+                <span class="text-muted">{{ $user->first_name . " " . $user->last_name }}</span>
+            </div>
+        @endforeach
     </div>
 
     <h2 class="sub-header">لیست آخرین ثبت نام ها :</h2>

@@ -31,7 +31,7 @@ class AdminController extends Controller
         $file = $file->move(public_path($directory) , $filename);
 
         /** @var integer array $sizes get sizes of images that will be create */
-        $sizes = [300 , 600 , 900];
+        $sizes = [200];
 
         /** @var array $url has uploaded images url*/
         $url['images'] = $this->resize( $file->getRealPath() , $sizes , $directory , $filename);

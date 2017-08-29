@@ -27,6 +27,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $casts = [
+        'image' => 'array'
+    ];
+
     public function isSuperAdmin()
     {
         return $this->type == "super-admin";

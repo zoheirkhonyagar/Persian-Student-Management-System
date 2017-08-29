@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Admin\AdminController;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class RegisterController extends Controller
+class RegisterController extends AdminController
 {
     /*
     |--------------------------------------------------------------------------
@@ -60,6 +61,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
+            'type' => 'required|string',
             'image' => 'nullable|mimes:jpeg,bmp,png',
             'national_number' => 'required|string|digits:10|unique:users',
             'password' => 'required|string|min:6|confirmed',
@@ -77,7 +79,8 @@ class RegisterController extends Controller
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
-            'image' => $data['image'],
+            'type' => $data['type'],
+            'image' => $this->uploadImage($data['image']),
             'national_number' => $data['national_number'],
             'password' => bcrypt($data['password']),
         ]);

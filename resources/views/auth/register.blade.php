@@ -25,7 +25,7 @@
     <h1 class="page-header">ایجاد مدیر :</h1>
 
     <div class="row placeholders col-md-4" style="text-align: right">
-        <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+        <form class="form-horizontal" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
@@ -36,8 +36,8 @@
 
                     @if ($errors->has('first_name'))
                         <span class="help-block">
-                                        <strong>{{ $errors->first('first_name') }}</strong>
-                                    </span>
+                            <strong>{{ $errors->first('first_name') }}</strong>
+                        </span>
                     @endif
                 </div>
             </div>
@@ -50,8 +50,8 @@
 
                     @if ($errors->has('last_name'))
                         <span class="help-block">
-                                        <strong>{{ $errors->first('last_name') }}</strong>
-                                    </span>
+                            <strong>{{ $errors->first('last_name') }}</strong>
+                        </span>
                     @endif
                 </div>
             </div>
@@ -64,8 +64,25 @@
 
                     @if ($errors->has('national_number'))
                         <span class="help-block">
-                                        <strong>{{ $errors->first('national_number') }}</strong>
-                                    </span>
+                            <strong>{{ $errors->first('national_number') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
+                <label for="type" class="col-md-3 control-label" style="text-align: right">نوع مدیر :</label>
+
+                <div class="col-md-7">
+                    <select id="type" name="type" class="form-control">
+                        <option value="admin">مدیر معمولی</option>
+                        <option value="super-admin">مدیر کل</option>
+                    </select>
+
+                    @if ($errors->has('type'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('type') }}</strong>
+                        </span>
                     @endif
                 </div>
             </div>
@@ -78,8 +95,8 @@
 
                     @if ($errors->has('image'))
                         <span class="help-block">
-                                        <strong>{{ $errors->first('image') }}</strong>
-                                    </span>
+                            <strong>{{ $errors->first('image') }}</strong>
+                        </span>
                     @endif
                 </div>
             </div>
@@ -92,8 +109,8 @@
 
                     @if ($errors->has('password'))
                         <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
                     @endif
                 </div>
             </div>
