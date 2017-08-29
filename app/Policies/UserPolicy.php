@@ -3,12 +3,13 @@
 namespace App\Policies;
 
 use App\User;
-use App\User;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy
 {
     use HandlesAuthorization;
+
 
     /**
      * Determine whether the user can view the user.
@@ -30,7 +31,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->isSuperAdmin();
     }
 
     /**
