@@ -37,5 +37,6 @@ Route::get('/', function () {
 
 Route::group( [ 'prefix' => 'admin' , 'namespace' => 'Admin' , 'middleware' => 'auth' ] , function () {
     $this->get('/panel' , 'PanelController@index')->name('adminPanel');
+    Route::resource('students', 'StudentController');
 });
 
