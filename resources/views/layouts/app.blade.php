@@ -50,8 +50,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">ورود</a></li>
-                            <li><a href="{{ route('register') }}">ثبت نام</a></li>
+                            {{--<li><a href="{{ route('login') }}">ورود</a></li>--}}
+                            {{--<li><a href="{{ route('register') }}">ثبت نام</a></li>--}}
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
