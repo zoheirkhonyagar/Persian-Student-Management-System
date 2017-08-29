@@ -11,16 +11,18 @@
 |
 */
 
+Route::group(['namespace' => 'Auth' , 'middleware' => 'checkSuperAdmin'] , function (){
+    // Registration Routes...
+    $this->get('register', 'RegisterController@showRegistrationForm')->name('register');
+    $this->post('register', 'RegisterController@register');
+});
+
 
 Route::group( [ 'namespace' => 'Auth' ] , function () {
     // Authentication Routes...
     $this->get('login', 'LoginController@showLoginForm')->name('login');
     $this->post('login', 'LoginController@login');
     $this->get('logout', 'LoginController@logout')->name('logout');
-
-// Registration Routes...
-    $this->get('register', 'RegisterController@showRegistrationForm')->name('register');
-    $this->post('register', 'RegisterController@register');
 
 // Password Reset Routes...
     $this->get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
