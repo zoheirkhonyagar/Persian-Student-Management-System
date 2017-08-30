@@ -5,7 +5,7 @@
     <h1 class="page-header">ویرایش اطلاعات کاربری :</h1>
 
     <div class="row placeholders col-md-4" style="text-align: right">
-        <form class="form-horizontal" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+        <form class="form-horizontal" method="POST" action="{{ route('user.profile.update' , ['user' => auth()->user()]) }}" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
@@ -63,7 +63,27 @@
                     @endif
                 </div>
             </div>
+            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                <label for="password" class="col-md-3 control-label" style="text-align: right">رمز عبور :</label>
 
+                <div class="col-md-7">
+                    <input id="password" type="password" class="form-control" name="password">
+
+                    @if ($errors->has('password'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password-confirm" class="col-md-3 control-label" style="text-align: right">تکرار رمز عبور :</label>
+
+                <div class="col-md-7">
+                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+                </div>
+            </div>
 
             <div class="form-group">
                 <div class="col-md-7 col-md-offset-3">

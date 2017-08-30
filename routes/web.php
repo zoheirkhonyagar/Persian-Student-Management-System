@@ -38,7 +38,7 @@ Route::get('/', function () {
 Route::group( [ 'prefix' => 'admin' , 'namespace' => 'Admin' , 'middleware' => 'auth' ] , function () {
     $this->get('/panel' , 'PanelController@index')->name('admin.panel');
     $this->get('/panel/profile' , 'PanelController@profile')->name('user.profile');
-    $this->post('/panel/profile/{user}' , 'PanelController@update')->name('user.update');
+    $this->post('/panel/profile/{user}' , 'PanelController@update')->name('user.profile.update');
     Route::resource('students', 'StudentController');
 });
 
