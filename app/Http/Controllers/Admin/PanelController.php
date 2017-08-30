@@ -13,4 +13,15 @@ class PanelController extends Controller
         $users = User::all();
         return view('Admin.index' , compact('users'));
     }
+
+    public function profile()
+    {
+        $user = auth()->user();
+        return view('Admin.user.profile.show' , compact('user'));
+    }
+
+    public function update()
+    {
+
+    }
 }

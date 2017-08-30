@@ -34,6 +34,7 @@
                         </li>
                     </ul>
                 </li>
+                <a class="btn btn-warning btn-xs" style="margin-top: 10px;padding: 5px 28px" href="{{ route('user.profile') }}">حساب کاربری</a>
             @endif
         </ul>
         {{--<div id="navbar" class="navbar-collapse collapse">--}}

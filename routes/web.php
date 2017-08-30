@@ -32,11 +32,13 @@ Route::group( [ 'namespace' => 'Auth' ] , function () {
 });
 
 Route::get('/', function () {
-    return redirect(route('adminPanel'));
+    return redirect(route('admin.panel'));
 });
 
 Route::group( [ 'prefix' => 'admin' , 'namespace' => 'Admin' , 'middleware' => 'auth' ] , function () {
-    $this->get('/panel' , 'PanelController@index')->name('adminPanel');
+    $this->get('/panel' , 'PanelController@index')->name('admin.panel');
+    $this->get('/panel/profile' , 'PanelController@profile')->name('user.profile');
+    $this->post('/panel/profile/{user}' , 'PanelController@update')->name('user.update');
     Route::resource('students', 'StudentController');
 });
 
