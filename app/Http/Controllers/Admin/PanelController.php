@@ -28,7 +28,7 @@ class PanelController extends AdminController
         $user->first_name = Request::input('first_name');
         $user->last_name = Request::input('last_name');
         $user->national_number = Request::input('national_number');
-        if (! Request::file('password') == '')
+        if (! Request::file('image') == '')
         {
             $image = $this->uploadImage(Request::file('image'));
             $user->image = $image;
@@ -41,4 +41,5 @@ class PanelController extends AdminController
 
         $user->save();
     }
+
 }

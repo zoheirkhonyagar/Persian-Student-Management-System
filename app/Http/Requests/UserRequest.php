@@ -23,12 +23,11 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        $user = auth()->user();
         return [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'image' => 'nullable|mimes:jpeg,bmp,png',
-            'national_number' => 'required|string|digits:10|unique:users,'.$user->national_number,
+            'national_number' => 'sometimes|required|string|digits:10|unique:users',
             'password' => 'string|min:6|confirmed',
         ];
     }

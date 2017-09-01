@@ -4,7 +4,7 @@
 
     <div class="row placeholders">
         @foreach($users as $user)
-            <div class="col-xs-6 col-sm-3 placeholder">
+            <div class="col-xs-6 col-sm-2 placeholder">
                 <img src="{{ $user->image != null ? "/" .$user->image['thumb'] : "data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" }}" width="200" class="img-responsive" alt="Generic placeholder thumbnail">
                 <h4>{{ $user->type == "super-admin" ? "مدیر کل" : "مدیر معمولی" }}</h4>
                 <span class="text-muted">{{ $user->first_name . " " . $user->last_name }}</span>
