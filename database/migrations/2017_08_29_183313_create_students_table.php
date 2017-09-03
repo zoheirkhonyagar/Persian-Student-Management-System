@@ -26,6 +26,7 @@ class CreateStudentsTable extends Migration
             $table->text('address')->nullable();
             $table->integer('family_count_member')->nullable();
             $table->integer('student_count')->nullable();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }
