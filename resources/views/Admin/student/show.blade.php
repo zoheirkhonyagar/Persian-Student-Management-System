@@ -14,14 +14,19 @@
             </tr>
             </thead>
             <tbody>
-                {{ $i=1 }}
                 @foreach($students as $student)
                     <tr>
-                        <td>{{ $i++ }}</td>
-                        <td>لورم</td>
-                        <td>ایپسوم</td>
-                        <td>لورم</td>
-                        <td>13</td>
+                        <td>1</td>
+                        <td>{{ $student->first_name }}</td>
+                        <td>{{ $student->last_name }}</td>
+                        <td>{{ $student->father_name }}</td>
+                        <td>{{ $student->mother_name }}</td>
+                        <td>
+                            <form action="{{ route('students.destroy' , [ 'id' => $student->id ]) }}">
+                                <a class="btn btn-info btn-xs"  href="{{ route( 'students.edit' , [ 'id' => $student->id ] ) }}">ویرایش</a>
+                                <a class="btn btn-danger btn-xs">حذف</a>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

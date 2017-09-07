@@ -73,23 +73,24 @@ class UserController extends AdminController
     public function update(Request $request, User $user)
     {
        // dd($request->all());
-        if (!$request->input('password') == null)
+        $this->validate($request , [
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'image' => 'nullable|mimes:jpeg,bmp,png',
+            'national_number' => [
+                'required',
+                'digits:10',
+                'string',
+                Rule::unique('users')->ignore($user->id, 'id')
+            ],
+        ]);
+        if(!$request->input('password') == null)
         {
             $this->validate($request , [
-                'first_name' => 'required|string|max:255',
-                'last_name' => 'required|string|max:255',
-                'image' => 'nullable|mimes:jpeg,bmp,png',
                 'password' => 'string|min:6|confirmed',
-                'national_number' => Rule::unique('users')->ignore($user->id, 'id'),
-            ]);
-        }else{
-            $this->validate($request , [
-                'first_name' => 'required|string|max:255',
-                'last_name' => 'required|string|max:255',
-                'image' => 'nullable|mimes:jpeg,bmp,png',
-                'national_number' => Rule::unique('users')->ignore($user->id, 'id'),
             ]);
         }
+
         $password = $request->input('password') != null ? bcrypt($request->input('password')) : $user->password ;
         $file = $request->file('image');
         $inputs = $request->all();

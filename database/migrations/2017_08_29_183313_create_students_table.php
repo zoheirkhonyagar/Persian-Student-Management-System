@@ -17,14 +17,15 @@ class CreateStudentsTable extends Migration
             $table->increments('id');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('national_code')->unique();
+            $table->text('image')->nullable();
+            $table->string('national_number')->unique();
             $table->timestamp('birthday');
             $table->string('father_name');
             $table->string('father_job')->nullable();
             $table->string('mother_name');
             $table->string('mother_job')->nullable();
             $table->text('address')->nullable();
-            $table->integer('family_count_member')->nullable();
+            $table->integer('family_count')->nullable();
             $table->integer('student_count')->nullable();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
