@@ -36,4 +36,9 @@ class User extends Authenticatable
     {
         return $this->type == "super-admin";
     }
+
+    public function student()
+    {
+        return $this->hasMany(Student::class);
+    }
 }

@@ -33,6 +33,16 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <label for="sex" class="col-md-3 control-label" style="text-align: right">جنسیت :</label>
+                <div class="col-md-7">
+                    <select name="sex" class="form-control" id="sex">
+                            <option value="زن">زن</option>
+                            <option value="مرد">مرد</option>
+                    </select>
+                </div>
+            </div>
+
             <div class="form-group{{ $errors->has('national_number') ? ' has-error' : '' }}">
                 <label for="national_number" class="col-md-3 control-label" style="text-align: right">کد ملی :</label>
 

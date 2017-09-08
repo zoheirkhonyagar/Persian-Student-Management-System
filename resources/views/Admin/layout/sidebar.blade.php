@@ -15,6 +15,5 @@
         <h4 class="sidebar-h4">دانش آموزان</h4>
         <li><a href="{{ route('students.create') }}">ثبت نام</a></li>
         <li><a href="{{ route('students.index') }}">لیست دانش آموزان</a></li>
-        <li><a href="#">لورم ایپسوم</a></li>
     </ul>
 </div>

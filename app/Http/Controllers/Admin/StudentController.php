@@ -18,7 +18,7 @@ class StudentController extends AdminController
     public function index()
     {
         $students = Student::paginate(15);
-        return view('Admin.student.show' , compact('students'));
+        return view('Admin.student.index' , compact('students'));
     }
 
     /**
@@ -59,6 +59,7 @@ class StudentController extends AdminController
         $this->validate($request , [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
+            'sex' => 'required|string|min:2|max:3',
             'image' => 'nullable|mimes:jpeg,bmp,png',
             'national_number' => 'required|string|digits:10|unique:students',
             'father_name' => 'required|string',
@@ -75,12 +76,13 @@ class StudentController extends AdminController
         ]);
         $file = $request->file('image');
         if ($file) {
-            $request['image'] = $this->uploadImage($file);
+            $image = $this->uploadImage($file);
         }
         Student::create([
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),
-            'image' => $request->file('image'),
+            'sex' => $request->input('sex') ,
+            'image' => $image,
             'national_number' => $request->input('national_number'),
             'father_name' => $request->input('father_name'),
             'father_job' => $request->input('father_job'),
@@ -92,7 +94,8 @@ class StudentController extends AdminController
             'birthday' => $request->input('time'),
             'user_id' => auth()->user()->id
         ]);
-        return redirect('/');
+
+        return redirect(route('students.index'));
     }
 
     /**
@@ -103,7 +106,8 @@ class StudentController extends AdminController
      */
     public function show(Student $student)
     {
-        //
+        $user = $student->user();
+        return view('Admin.student.show' , compact(['student' , 'user']));
     }
 
     /**
@@ -137,6 +141,7 @@ class StudentController extends AdminController
      */
     public function destroy(Student $student)
     {
-        //
+        $student->delete();
+        return redirect(route('students.index'));
     }
 }
