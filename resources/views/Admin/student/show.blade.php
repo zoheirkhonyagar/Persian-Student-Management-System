@@ -67,7 +67,7 @@
                 <h5 style="margin:20px 0;">تاریخ ثبت نام :
                     <span>{{ jdate($student->created_at)->format("%d %B %Y") }}</span>
                 </h5>
-                <a class="btn btn-primary" href="{{ route('users.edit', [ 'id' => $student->id ]) }}">ویرایش اطلاعات</a>
+                <a class="btn btn-primary" href="{{ route('students.edit', [ 'id' => $student->id ]) }}">ویرایش اطلاعات</a>
             </div>
         </div>
     </div>

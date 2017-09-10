@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Student;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rule;
 use Morilog\Jalali\jDate;
 
 
@@ -17,8 +18,11 @@ class StudentController extends AdminController
      */
     public function index()
     {
-        $students = Student::paginate(15);
-        return view('Admin.student.index' , compact('students'));
+        $itemCountPerPage = 10 ;
+        $students = Student::paginate($itemCountPerPage);
+        $currentPage = $students->currentPage();
+        $count = ( $currentPage * $itemCountPerPage ) - ($itemCountPerPage - 1) ;
+        return view('Admin.student.index' , compact(['students' , 'count']));
     }
 
     /**
@@ -75,6 +79,7 @@ class StudentController extends AdminController
             'time' => 'required|date',
         ]);
         $file = $request->file('image');
+        $image = '';
         if ($file) {
             $image = $this->uploadImage($file);
         }
@@ -118,7 +123,22 @@ class StudentController extends AdminController
      */
     public function edit(Student $student)
     {
-        //
+        $year = jdate(date('Y'))->format('Y');
+        $months = [
+            '1' => 'فروردین',
+            '2' => 'اردیبهشت',
+            '3' => 'خرداد',
+            '4' => 'تیر',
+            '5' => 'مرداد',
+            '6' => 'شهریور',
+            '7' => 'مهر',
+            '8' => 'آبان',
+            '9' => 'آذر',
+            '10' => 'دی',
+            '11' => 'بهمن',
+            '12' => 'اسفند',
+        ];
+        return view('Admin.student.edit' , compact([ 'student' , 'year' , 'months' ]));
     }
 
     /**
@@ -130,7 +150,54 @@ class StudentController extends AdminController
      */
     public function update(Request $request, Student $student)
     {
-        //
+        $request['time'] = \jDateTime::toGregorian($request['year'],$request['month'],$request['day']);
+        $request['time'] = implode("-",$request['time']) ." 00:00:00";
+        $this->validate($request , [
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'sex' => 'required|string|min:2|max:3',
+            'image' => 'nullable|mimes:jpeg,bmp,png',
+            'national_number' => [
+                'required',
+                'digits:10',
+                'string',
+                Rule::unique('students')->ignore($student->id, 'id')
+            ],
+            'father_name' => 'required|string',
+            'father_job' => 'nullable|string',
+            'mother_name' => 'required|string',
+            'mother_job' => 'nullable|string',
+            'address' => 'nullable|string',
+            'family_count' => 'nullable|numeric',
+            'student_count' => 'nullable|numeric',
+            'day' => 'required|numeric',
+            'month' => 'required|numeric',
+            'year' => 'required|numeric',
+            'time' => 'required|date',
+        ]);
+        $file = $request->file('image');
+        if ($file) {
+            $image = $this->uploadImage($file);
+        }else{
+            $image = $student->image;
+        }
+        $student->update([
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'sex' => $request->input('sex') ,
+            'image' => $image,
+            'national_number' => $request->input('national_number'),
+            'father_name' => $request->input('father_name'),
+            'father_job' => $request->input('father_job'),
+            'mother_name' => $request->input('mother_name'),
+            'mother_job' => $request->input('mother_job'),
+            'address' => $request->input('address'),
+            'family_count' => $request->input('family_count'),
+            'student_count' => $request->input('student_count'),
+            'birthday' => $request->input('time'),
+        ]);
+
+        return redirect(route('students.index'));
     }
 
     /**

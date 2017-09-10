@@ -17,7 +17,7 @@
             <tbody>
             @foreach($students as $student)
                 <tr>
-                    <td>1</td>
+                    <td>{{$count++}}</td>
                     <td>{{ $student->first_name }}</td>
                     <td>{{ $student->last_name }}</td>
                     <td>{{ $student->sex }}</td>
@@ -37,4 +37,5 @@
             </tbody>
         </table>
     </div>
+    {{ $students->links() }}
 @endsection

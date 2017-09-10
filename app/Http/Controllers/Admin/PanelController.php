@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\UserRequest;
+use App\Student;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,7 +13,9 @@ class PanelController extends AdminController
     public function index()
     {
         $users = User::all();
-        return view('Admin.index' , compact('users'));
+        $students = Student::latest()->take(10)->get();
+        $count = 1;
+        return view('Admin.index' , compact('users' , 'students' , 'count'));
     }
 
     public function profile()

@@ -141,9 +141,7 @@
                 <label for="address" class="col-md-3 control-label" style="text-align: right">آدرس :</label>
 
                 <div class="col-md-7">
-                    <textarea id="address" class="form-control" name="address">
-                        {{ old('address') }}
-                    </textarea>
+                    <textarea id="address" class="form-control" name="address">{{ old('address') }}</textarea>
                     @if ($errors->has('address'))
                         <span class="help-block">
                             <strong>{{ $errors->first('address') }}</strong>
@@ -181,7 +179,7 @@
             </div>
 
             <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
-                <label for="image" class="col-md-3 control-label" style="text-align: right">تصویر کاربر :</label>
+                <label for="image" class="col-md-3 control-label" style="text-align: right">تصویر دانش آموز :</label>
 
                 <div class="col-md-7">
                     <input type="file" id="image" class="form-control" name="image" value="{{ old('image') }}" autofocus>
