@@ -58,6 +58,7 @@ class StudentController extends AdminController
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $request['time'] = \jDateTime::toGregorian($request['year'],$request['month'],$request['day']);
         $request['time'] = implode("-",$request['time']) ." 00:00:00";
         $this->validate($request , [
@@ -66,10 +67,13 @@ class StudentController extends AdminController
             'sex' => 'required|string|min:2|max:3',
             'image' => 'nullable|mimes:jpeg,bmp,png',
             'national_number' => 'required|string|digits:10|unique:students',
+            'class_name' => 'nullable|string',
             'father_name' => 'required|string',
             'father_job' => 'nullable|string',
+            'father_phone' => 'nullable|string',
             'mother_name' => 'required|string',
             'mother_job' => 'nullable|string',
+            'mother_phone' => 'nullable|string',
             'address' => 'nullable|string',
             'family_count' => 'nullable|numeric',
             'student_count' => 'nullable|numeric',
@@ -89,10 +93,13 @@ class StudentController extends AdminController
             'sex' => $request->input('sex') ,
             'image' => $image,
             'national_number' => $request->input('national_number'),
+            'class_name' => $request->input('class_name'),
             'father_name' => $request->input('father_name'),
             'father_job' => $request->input('father_job'),
+            'father_phone' => $request->input('father_phone'),
             'mother_name' => $request->input('mother_name'),
             'mother_job' => $request->input('mother_job'),
+            'mother_phone' => $request->input('mother_phone'),
             'address' => $request->input('address'),
             'family_count' => $request->input('family_count'),
             'student_count' => $request->input('student_count'),
@@ -163,10 +170,13 @@ class StudentController extends AdminController
                 'string',
                 Rule::unique('students')->ignore($student->id, 'id')
             ],
+            'class_name' => 'nullable|string',
             'father_name' => 'required|string',
             'father_job' => 'nullable|string',
+            'father_phone' => 'nullable|string',
             'mother_name' => 'required|string',
             'mother_job' => 'nullable|string',
+            'mother_phone' => 'nullable|string',
             'address' => 'nullable|string',
             'family_count' => 'nullable|numeric',
             'student_count' => 'nullable|numeric',
@@ -187,10 +197,13 @@ class StudentController extends AdminController
             'sex' => $request->input('sex') ,
             'image' => $image,
             'national_number' => $request->input('national_number'),
+            'class_name' => $request->input('class_name'),
             'father_name' => $request->input('father_name'),
             'father_job' => $request->input('father_job'),
+            'father_phone' => $request->input('father_phone'),
             'mother_name' => $request->input('mother_name'),
             'mother_job' => $request->input('mother_job'),
+            'mother_phone' => $request->input('mother_phone'),
             'address' => $request->input('address'),
             'family_count' => $request->input('family_count'),
             'student_count' => $request->input('student_count'),
@@ -210,5 +223,12 @@ class StudentController extends AdminController
     {
         $student->delete();
         return redirect(route('students.index'));
+    }
+
+    public function searchByNationalCode(Request $request)
+    {
+        $students = Student::where('national_number' , $request->input('national_number'))->paginate(1);
+        $count = 1;
+        return view('Admin.student.index' , compact([ 'students' , 'count']));
     }
 }

@@ -39,6 +39,8 @@ Route::group( [ 'prefix' => 'admin' , 'namespace' => 'Admin' , 'middleware' => '
     $this->get('/panel' , 'PanelController@index')->name('admin.panel');
     $this->get('/panel/profile' , 'PanelController@profile')->name('user.profile');
     Route::resource('/panel/users' , 'UserController');
+    Route::post('search', 'StudentController@searchByNationalCode')->name('students.search');
     Route::resource('students', 'StudentController');
+
 });
 

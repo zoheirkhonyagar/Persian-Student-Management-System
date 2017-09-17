@@ -57,6 +57,20 @@
                 </div>
             </div>
 
+            <div class="form-group{{ $errors->has('class_name') ? ' has-error' : '' }}">
+                <label for="class_name" class="col-md-3 control-label" style="text-align: right">نام کلاس :</label>
+
+                <div class="col-md-7">
+                    <input id="class_name" type="text" class="form-control" name="class_name" value="{{ old('class_name') }}" autofocus>
+
+                    @if ($errors->has('class_name'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('class_name') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
             <div class="form-group">
                 <label class="col-md-3 control-label" style="text-align: right">تاریخ تولد :</label>
                 <div class="col-md-7">
@@ -109,6 +123,20 @@
                 </div>
             </div>
 
+            <div class="form-group{{ $errors->has('father_phone') ? ' has-error' : '' }}">
+                <label for="father_phone" class="col-md-3 control-label" style="text-align: right">تلفن پدر :</label>
+
+                <div class="col-md-7">
+                    <input id="father_phone" type="text" class="form-control" name="father_phone" value="{{ old('father_phone') }}" autofocus>
+
+                    @if ($errors->has('father_phone'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('father_phone') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
             <div class="form-group{{ $errors->has('mother_name') ? ' has-error' : '' }}">
                 <label for="mother_name" class="col-md-3 control-label" style="text-align: right">نام مادر :</label>
 
@@ -132,6 +160,20 @@
                     @if ($errors->has('mother_job'))
                         <span class="help-block">
                             <strong>{{ $errors->first('mother_job') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="form-group{{ $errors->has('mother_phone') ? ' has-error' : '' }}">
+                <label for="mother_phone" class="col-md-3 control-label" style="text-align: right">تلفن مادر :</label>
+
+                <div class="col-md-7">
+                    <input id="mother_phone" type="text" class="form-control" name="mother_phone" value="{{ old('mother_phone') }}" autofocus>
+
+                    @if ($errors->has('mother_phone'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('mother_phone') }}</strong>
                         </span>
                     @endif
                 </div>

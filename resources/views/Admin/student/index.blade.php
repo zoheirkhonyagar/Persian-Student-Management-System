@@ -1,6 +1,19 @@
 @extends('Admin.master')
 @section('content')
-    <h2 class="sub-header">لیست آخرین ثبت نام ها :</h2>
+    <h2 class="sub-header">لیست دانش آموزان :</h2>
+    <form action="{{ route('students.search') }}" method="POST" class="form-inline" style="margin: 30px 0;">
+        {{csrf_field()}}
+        <div class="form-group">
+            <label class="sr-only" for="search">جستجو</label>
+            <div class="input-group">
+                <input type="text" name="national_number" class="form-control" id="search" placeholder="کد ملی دانش آموز">
+                <div class="input-group-btn">
+                    <button type="submit" class="btn btn-primary">جستجو</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>

@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">نام پروژه</a>
+            <a class="navbar-brand" href="/">بوستان</a>
         </div>
         <ul class="nav navbar-nav navbar-right">
             <!-- Authentication Links -->

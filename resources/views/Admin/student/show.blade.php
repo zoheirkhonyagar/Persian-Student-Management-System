@@ -37,6 +37,9 @@
                 <h5 style="margin:20px 0;">کد ملی :
                     <span>{{ $student->national_number }}</span>
                 </h5>
+                <h5 style="margin:20px 0;">نام کلاس :
+                    <span>{{ $student->class_name }}</span>
+                </h5>
                 <h5 style="margin:20px 0;">تاریخ تولد :
                     <span>{{ jdate($student->birthday)->format("%d %B %Y") }}</span>
                 </h5>
@@ -46,11 +49,17 @@
                 <h5 style="margin:20px 0;">شغل پدر :
                     <span>{{ $student->father_job }}</span>
                 </h5>
+                <h5 style="margin:20px 0;">تلفن پدر :
+                    <span>{{ $student->father_phone }}</span>
+                </h5>
                 <h5 style="margin:20px 0;">نام مادر :
                     <span>{{ $student->mother_name }}</span>
                 </h5>
                 <h5 style="margin:20px 0;">شغل مادر :
                     <span>{{ $student->mother_job }}</span>
+                </h5>
+                <h5 style="margin:20px 0;">تلفن مادر :
+                    <span>{{ $student->mother_phone }}</span>
                 </h5>
                 <h5 style="margin:20px 0;">آدرس :
                     <span>{{ $student->address }}</span>
